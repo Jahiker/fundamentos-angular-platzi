@@ -5,6 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'my-store';
+  public name: string = 'Jahiker';
+  age: number = 36;
+  img = 'https://source.unsplash.com/random';
 }
