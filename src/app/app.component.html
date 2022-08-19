@@ -1,8 +1,24 @@
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click)="toggleButton()">Toggle Button</button>
+<p>Edad {{ person.age }}</p>
+<button (click)="increaseAge()">Age ++</button>
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error nesciunt tenetur iste consectetur ab est consequatur repellendus commodi aut quaerat libero alias illum veritatis obcaecati laudantium, harum quod, natus quia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis deleniti corrupti atque similique accusantium ducimus, dicta eligendi dolore sequi vero excepturi cumque nisi asperiores animi? Consectetur est hic sapiente tempore.</p>
+</div>
+<input type="text" [value]="person.name" (keyup)="changeName($event)">
+<p>{{ person.name }}</p>
+<hr>
+
+<h1>Propiedades</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" [value]="person.name">
+<progress max="100" [value]="person.age"></progress>
+<img [src]="person.avatar" width="100px" alt="Imagen">
+
+<hr>
+
 <h1>Hola Mundo</h1>
 <h2>{{ 'Hola Mundo '.repeat(5) }}</h2>
-
 <p>3 + 3 = {{ 3 + 3 }}</p>
-
 <h3>Hola soy {{ name }} y tengo {{ age }} años</h3>
-
-<img src={{img}} alt="Imagen">
+<img width="500" src={{img}} alt="Imagen">
