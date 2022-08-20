@@ -8,3 +8,8 @@ h1 {
   overflow: auto;
   background-color: red;
 }
+
+input.invalid {
+  border: 2px solid red;
+  border-radius: 4px;
+}

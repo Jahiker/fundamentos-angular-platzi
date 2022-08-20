@@ -1,3 +1,26 @@
+<h1>*ngIf</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name">
+
+<p *ngIf="person.name === 'Jahiker'; else elseBlock">Es Jahiker</p>
+<p *ngIf="person.name === 'Mafer'; else elseBlock">Es Mafer</p>
+<p *ngIf="person.name === 'Pili' && person.age == 7; else elseBlock">Es Pili</p>
+<ng-template #elseBlock>
+  <p>No es de la familia</p>
+</ng-template>
+
+<br>
+
+<h1>ngModel</h1>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name">
+<p>{{ person.name }}</p>
+<p>Valid: {{ nameInput.valid }}</p>
+
+<input type="number" class="{{ ageInput.valid ? 'valid' : 'invalid'}}" required max="100" min="1" #ageInput="ngModel" [(ngModel)]="person.age">
+<p>{{ person.age }}</p>
+<p>Valid: {{ ageInput.valid }}</p>
+<hr>
+
+<h1>Events</h1>
 <button [disabled]="btnDisabled">Enviar</button>
 <button (click)="toggleButton()">Toggle Button</button>
 <p>Edad {{ person.age }}</p>
@@ -9,15 +32,14 @@
 <p>{{ person.name }}</p>
 <hr>
 
-<h1>Propiedades</h1>
+<h1>Binding Propiedades</h1>
 <button [disabled]="btnDisabled">Enviar</button>
 <input type="text" [value]="person.name">
 <progress max="100" [value]="person.age"></progress>
 <img [src]="person.avatar" width="100px" alt="Imagen">
-
 <hr>
 
-<h1>Hola Mundo</h1>
+<h1>Interpolacion de datos</h1>
 <h2>{{ 'Hola Mundo '.repeat(5) }}</h2>
 <p>3 + 3 = {{ 3 + 3 }}</p>
 <h3>Hola soy {{ name }} y tengo {{ age }} años</h3>
