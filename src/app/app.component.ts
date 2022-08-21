@@ -15,7 +15,9 @@ export class AppComponent {
     name: "Jahiker",
     age: 36,
     avatar: "https://source.unsplash.com/random"
-  }
+  };
+  names: string[] = ['Jahiker', 'Mafer', 'Pili'];
+  newName = '';
 
   // Metodos
   public toggleButton() {
@@ -34,5 +36,14 @@ export class AppComponent {
   changeName(event: Event) {
     const element = event.target as HTMLInputElement;
     this.person.name = element.value;
+  }
+
+  addName() {
+    this.names.push(this.newName);
+    this.newName = ''
+  }
+
+  deleteName(index: number) {
+    this.names.splice(index, 1);
   }
 }
