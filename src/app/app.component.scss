@@ -29,3 +29,18 @@ input.invalid {
     }
   }
 }
+
+.message-error {
+  background-color: red;
+  opacity: 0;
+  transition: opacity 0.5s;
+  margin: 10px 0 0;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.dynamic-styles {
+  display: flex;
+}

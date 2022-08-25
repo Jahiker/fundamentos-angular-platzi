@@ -1,0 +1,263 @@
+# Fundamentos de Angular
+
+====================================================================================
+
+# Creacion de un proyecto
+-- Instala el CLI de Angular: 'npm -g @angular/cli'
+-- Verifica tu instalación: 'ng version'
+-- Crea tu primer proyecto: 'ng new my-project'
+-- Ejecuta el servidor de desarrollo: 'ng serve' Dentro de la carpeta de tu proyecto.
+-- Para abrir el proyecto automaticamente en el navegador: 'ng serve -o'
+-- Para asignar el puerto donde va a abrir el proyecto 'ng serve -o --port=PORT'
+
+====================================================================================
+
+# Estructura de proyecto Angular
+-- src: en este directorio pasaremos la mayor parte del tiempo ya que es donde se encuentran los componentes
+-- browserlist: le indica a angular en que versiones va a ser soportada la aplicacion
+-- editorconfig: tiene que ver mas con el trabajo en equipo, contiene normativas, para que funcione debes instalar el plugin editor config en vs code
+-- tsconfig: se refiere a la configuracion de typescript, donde va a compilar, donde se guardaran los archivos y demas
+-- angular.josn: para manegar distintos ambientes staging, test, development, production
+-- karma: para las pruebas unitarias
+-- .nvmrc: debemos agregarlo, si trabajas con diferentes versiones de node, te recomienda cual es la version de node recomendada para el proyecto
+
+====================================================================================
+
+# Typescript
+-- el tipado puede reducir el 60% de los bugs por errores en codigo
+
+====================================================================================
+
+# Interpolacion
+-- es la forma en que nosotros con doble llaves {{ value }} podemos implementar codigo js y obtener un resultado o para renderizar contenidos
+
+====================================================================================
+
+# Binding de atributos y propiedades
+-- para bindear un atributo o pripiedad de un elemento html utilizamos los corchetes y se le asigna una variable al atributo
+-- con esto anclamos el valor del atributo a una variable y si esta cambia, el atributo cambia de igual forma
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" [value]="name">
+
+====================================================================================
+
+# Eventos
+-- para la declaracion de eventos en Angular lo realizamos de la siguiente forma (evento)="funcion()">
+
+====================================================================================
+
+# Data Binding ngModal
+-- Es una fusion el event binding y el seteo de propiedades
+-- es un enlace de doble via
+-- utilizamos el ngModel y es muy util para los inputs
+-- la sintaxis del ngModel es como unas bananas dentro de una caja [(ngModel)]
+-- el ngModel siempre esta pendiente del estado el input y sincroniza el valor
+
+El atributo ngModel permite el intercambio de datos de forma bidireccional entre el componente y la vista. Lo que suceda en el componente, se verá reflejado en la vista. Lo que se suceda en la vista, inmediatamente impactará en el componente.
+
+<input [(ngModel)]="name">
+
+ngModel usar tanto los corchetes [] como los paréntesis (). De esta manera, se vuelve bidireccional el intercambio de datos. Si no quieres la bidirección, solo colocamos los corchetes [ngModel] para que la comunicación sea unidireccional.Para utilizar ngModel, es necesario hacer uso e importar Angular Forms. Para esto, dirígete al archivo app.module.ts que es el módulo principal de toda aplicación Angular y agrega lo siguiente:
+
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [ ... ],
+  imports: [
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [ ... ]
+})
+export class AppModule { }
+
+====================================================================================
+
+# Estructuras de control *ngIf
+-- ngIf es una atributo para hacer que el elemento html se muestre si se cumple la condicion asignada
+-- <div *ngIf="isPlatzi">Hola, soy Platzi</div>
+
+El condicional “If” es un “If” en Javascript, en Java, en PHP, en Python o en cualquier lenguaje. Angular posibilita utilizar este condicionante embebido en el HTML para mostrar o no un elemento. Su sintaxis es algo particular, está compuesta por un asterisco seguido de las iniciales características de Angular “ng” y la palabra “If”.
+
+<div *ngIf="isPlatzi">Hola, soy Platzi</div>
+
+If … else
+Para usar un else en Angular, la sintaxis es algo especial. Debes crear un template en tu código HTML usando la etiqueta que provee Angular llamada <ng-template> con una Variable de Template, comenzando con #, para hacer referencia a este elemento desde tu If.
+
+<div *ngIf="isPlatzi; else templateElse">Hola, soy Platzi</div>
+<ng-template #templateElse>
+    <div>No soy Platzi</div>
+</ng-template
+
+====================================================================================
+
+# Estructuras de control *ngFor
+-- Se utiliza para iterar un Array
+-- la directiva se usa dentro del elemento que se va a repetir en el ciclo For
+
+A lo igual que con un If, Angular permite iterar un array de números, de cadenas de caracteres o de objetos usando “*ngFor”.Si tienes en tu componente un array de datos:
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  myArray: string[] = [
+    'Platzi',
+    'es',
+    'genial!'
+  ];
+}
+
+Puedes mostrar cada elemento iterando el array en un elemento HTML:
+"let str of myArray">
+        {{ str }}
+    </li>
+>
+
+El *ngFor crea una variable temporal llamada str (o el nombre que más te guste) que contiene cada valor de myArray. Finalmente, utilizando una interpolación, muestras el valor de str.Quedando tu HTML de la siguiente manera:
+<li>Platzili><li>esli><li>genial!li>ul>
+
+Índice de iteración
+ngFor también cuenta con un índice con el número de iteraciones. Puedes acceder a este número agregando al ngFor index as i de la siguiente manera:
+
+"let str of myArray; index as i">
+        {{ i }}. {{ str }}
+    </li>
+>
+
+Cada iteración contiene una variable i con el índice que le corresponde. Iniciando desde cero, da como resultado:
+
+<ul>
+    <li>0. Platzili>
+    <li>1. esli>
+    <li>2. genial!li>
+ul>
+
+Puedes utilizar *ngFor para iterar y mostrar cada propiedad de un objeto. Considera que en el componente tienes un array de objetos que representan a una persona:
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  peopleArray = [
+    {
+        firstname: 'Freddy',
+        lastname: 'Vega',
+        age: 35
+    },
+    {
+        firstname: 'Nicolas',
+        lastname: 'Molina',
+        age: 29
+    },
+    {
+        firstname: 'Ángela',
+        lastname: 'Ocando',
+        age: 30
+    }
+  ];
+}
+
+Itera este array en el HTML e imprimimos el valor de cada propiedad de la siguiente manera:
+
+<ul *ngFor="let person of peopleArray">
+    <li>Nombre: {{ person.firstname }}</li>
+    <li>Apellido: {{ person.lastname }}</li>
+    <li>Edad: {{ person.age }}</li>
+</ul>
+
+La variable person guarda temporalmente el objeto en cada iteración, pudiendo acceder a cada valor usando un punto seguido del nombre de la propiedad.
+
+Tipado de objetos con interfaces
+El array peopleArray puede contener cualquier cosa, y puede ocasionar comportamientos indeseados en tu aplicación. Puedes crear una interfaz de Personas para tipar los objetos del array y asegurar que todos tengas las mismas propiedades.
+
+interface Person {
+    firstname: string;
+    lastname: string;
+    age: number
+}
+
+Tipando el array de la siguiente manera para indicar que el array es de objetos del tipo Persona:
+
+peopleArray: Person[] = [
+    {
+        firstname: 'Freddy',
+        lastname: 'Vega',
+        age: 35
+    },
+ ]
+
+-- Las interfaces a diferencia de las clases solo nos indican con que atributos debe contar un objeto
+
+====================================================================================
+
+# Angular Devtools
+
+Angular DevTools es una herramienta complementaria para enriquecer tu experiencia de desarrollo en Angular permitiendo la depuración y el debugging de tu aplicación.
+
+Solo tienes que instalar la extensión del navegador para Google Chrome.
+
+Gracias a estas herramientas, podrás desarrollar y resolver bug más rápido, inspeccionar el valor de las propiedades de tu componente y detectar cuando el usuario realiza alguna acción y se lanza un evento.
+
+Otras extensiónes para Angular
+También puedes explorar la extensión Augury, una alternativa tanto para Google Chrome como para Mozilla Firefox.
+
+TIP: Solo puedes utilizar estas extensiones en un ambiente de desarrollo, no funcionan en producción.
+
+Aporte creado por: Kevin Fiorentino.
+
+
+====================================================================================
+
+# Estilos
+
+En el decorador de tu componente, verás la propiedad styleUrls donde se hace referencia a la hoja de estilos que el componente utiliza.
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+    ...
+}
+
+En este archivo puedes escribir todo el código CSS que tu componente necesita. Por ejemplo, si escogiste SCSS:
+
+div {
+    margin: 15px;
+    h1 {
+        font-family: Arial;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    p {
+        font-family: Arial;
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+}
+
+Preprocesadores de CSS
+Dependiendo el preprocesador que hayas elegido, tus hojas de estilos tendrán una extensión u otra. A excepción de .css si no escogiste utilizar un preprocesador.
+
+TIP: Para escojer otro preprocesador, puedes realizar este cambio manualmente en el archivo ‘angular.json’ en la raíz de tu proyecto
+
+Class binding
+La versatilidad de Angular te permite agregar o quitar clases y estilos a tus elementos HTML a partir de condicionantes. Así como anteriormente utilizaste los corchetes [] para bindear atributos como el [src] de una imagen o el [href] de un enlace, puedes bindear clases para que Angular las agregue o quite dinámicamente si se cumple una condición de la siguiente manera:
+
+<div [class.active-color]="isActive"></div>
+
+Imagina que tienes en tu componente una propiedad llamada isActive que agregará la clase active-color si esta es verdadera o quitará la clase si es falsa. Luego ya puedes darle los estilos que más te gusten al elemento HTML en tu hoja de estilos utilizando la clase active-color.
+
+Style binding
+También puedes añadir estilos inline a los elementos HTML bindeando la propiedad [style] seguido de la propiedad CSS que quieres modificar dinámicamente:
+
+<p [style.color]="isActive ? 'blue' : 'red'"></p>
+
+A partir del valor de isActive, dependiendo si este es verdadero o falso, puedes emplear un operador ternario para cambiar el color del párrafo.
+
+

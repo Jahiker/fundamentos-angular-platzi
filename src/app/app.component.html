@@ -1,3 +1,23 @@
+<h1>Class & Styles</h1>
+<input type="text" required #nameInputStyles="ngModel" [(ngModel)]="person.name" />
+<p class="message-error" [class.active]="nameInputStyles.invalid">El campo es requerido</p>
+
+<label>Nombre</label>
+<input type="text" required minlength="3" maxlength="12" #nameInputStyles2="ngModel" [(ngModel)]="person.name" />
+<p [style.font-style]="nameInputStyles2.invalid ? 'italic' : 'normal'">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+<div class="dynamic-styles">
+  <div>
+    <input type="number" required [(ngModel)]="widthImg" />
+  </div>
+  <div>
+    <img [width]="widthImg" [src]="person.avatar" alt="Imagen">
+    <br>
+    <img [style.width.px]="widthImg" [src]="person.avatar" alt="Imagen">
+  </div>
+</div>
+<hr>
+
 <h1>*ngSwitch</h1>
 <input type="text" required [(ngModel)]="person.name">
 
