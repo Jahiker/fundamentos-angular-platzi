@@ -30,6 +30,17 @@ input.invalid {
   }
 }
 
+.line-error {
+  height: 0;
+  &.valid {
+    border-bottom: 2px solid greenyellow;
+  }
+
+  &.invalid {
+    border-bottom: 2px solid red;
+  }
+}
+
 .message-error {
   background-color: red;
   opacity: 0;
