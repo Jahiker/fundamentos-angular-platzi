@@ -1,3 +1,27 @@
+<h1>Form</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+  <div class="input-group">
+    <label for="">Nombre</label>
+    <input type="text" name="name" #inputNameForm="ngModel" required [(ngModel)]="register.name">
+    <p *ngIf="inputNameForm.invalid">Mensaje de error</p>
+  </div>
+
+  <div class="input-group">
+    <label for="">Email</label>
+    <input type="email" name="email" #inputEmailForm="ngModel" required [(ngModel)]="register.email">
+    <p *ngIf="inputEmailForm.invalid">Mensaje de error</p>
+  </div>
+
+  <div class="input-group">
+    <label for="">Password</label>
+    <input type="password" name="password" #inputPasswordForm="ngModel" required [(ngModel)]="register.password">
+    <p *ngIf="inputPasswordForm.invalid" >Mensaje de error</p>
+  </div>
+
+  <button type="submit" [disabled]="myForm.invalid">Registrar</button>
+</form>
+<hr>
+
 <h1>NgClass & NgStyle</h1>
 <input type="text" minlength="3" maxlength="12" required #nameInputStyles3="ngModel" [(ngModel)]="person.name" />
 <hr
